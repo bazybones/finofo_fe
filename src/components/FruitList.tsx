@@ -35,11 +35,23 @@ const FruitList: React.FC<FruitListProps> = ({
     return (
       <div>
         {Object.entries(groupedFruits).map(([key, group]) => (
-          <div key={key} className="mb-4">
+          <div key={key} className="mb-6">
             {groupBy !== "None" && (
-              <h3 className="font-bold text-lg">
-                {groupBy}: {key}
-              </h3>
+              <div className="flex items-center justify-between bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-md mb-2">
+                <h3 className="font-semibold text-lg text-gray-800 dark:text-white">
+                  {groupBy}:{" "}
+                  <span className="text-gray-600 dark:text-gray-300">
+                    {key}
+                  </span>
+                </h3>
+                <Button
+                  onClick={() => group.forEach(onAddFruit)}
+                  variant="outline"
+                  className="text-sm px-4 py-2 border border-gray-300 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 dark:text-gray-300 rounded-md transition ease-in-out duration-150"
+                >
+                  Add All in {key}
+                </Button>
+              </div>
             )}
             <ul>
               {group.map((fruit) => (
@@ -47,7 +59,9 @@ const FruitList: React.FC<FruitListProps> = ({
                   key={fruit.id}
                   className="flex justify-between p-2 border-b"
                 >
-                  <span>{fruit.name}</span>
+                  <span>
+                    {fruit.name} ({fruit.nutritions.calories}cal)
+                  </span>
                   <Button variant={"link"} onClick={() => onAddFruit(fruit)}>
                     Add to Jar
                   </Button>
@@ -116,7 +130,7 @@ const FruitList: React.FC<FruitListProps> = ({
         {groupBy && (
           <Button
             variant={"default"}
-            onClick={() => fruits.forEach(onAddFruit)} // Add all fruits in the group
+            onClick={() => fruits.forEach(onAddFruit)}
             className="py-2 px-4 text-white dark:text-black rounded"
           >
             Add All
