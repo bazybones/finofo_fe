@@ -5,7 +5,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
+} from "./ui/Select";
 
 interface GroupByProps {
   groupBy: string | null;
