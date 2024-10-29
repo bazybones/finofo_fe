@@ -16,13 +16,17 @@ const GroupBy: React.FC<GroupByProps> = ({ groupBy, onChangeGroupBy }) => {
   return (
     <div className="mb-4 flex justify-center items-center flex-col">
       <label
-        htmlFor="group-by"
+        htmlFor="group-by-select"
         className="text-xl font-semibold inline-block text-center mb-2 text-black dark:text-white"
       >
         Group by:
       </label>
       <Select value={groupBy || "None"} onValueChange={onChangeGroupBy}>
-        <SelectTrigger aria-label="Group" className="w-[180px]">
+        <SelectTrigger
+          id="group-by-select"
+          aria-label="Group"
+          className="w-[180px]"
+        >
           <SelectValue placeholder="None" />
         </SelectTrigger>
         <SelectContent>
