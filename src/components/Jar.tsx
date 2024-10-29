@@ -3,6 +3,7 @@ import { Pie } from "react-chartjs-2";
 import { Fruit } from "../types/Fruit";
 import { Chart, ArcElement } from "chart.js";
 import { ScrollArea } from "./ui/scroll-area";
+import { Button } from "./ui/button";
 
 Chart.register(ArcElement);
 
@@ -76,15 +77,16 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
         Total Calories: {totalCalories}
       </h3>
       <div className="text-right">
-        <button
-          className="bg-red-400 text-white py-2 px-4 rounded mb-4"
+        <Button
+          variant={"destructive"}
+          className=" text-white py-2 px-4 rounded mb-4"
           onClick={handleRemoveAll}
         >
           Remove All
-        </button>
+        </Button>
       </div>
-      <ScrollArea className="h-[45rem] w-auto rounded-md border p-5">
-        <div className="bg-white dark:bg-[#1d1d20] p-6 rounded-lg shadow-lg flex flex-col items-center">
+      <ScrollArea className="h-[41.8rem] w-auto rounded-md border p-5">
+        <div className="dark:bg-[#1d1d20] p-6 flex flex-col items-center">
           <ul className="mb-4 w-full">
             {fruits.length === 0 ? (
               <li className="dark:text-white text-center">
@@ -96,16 +98,19 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
                   key={`${fruit.id}-${count}`}
                   className="flex justify-between mb-2 dark:text-white p-2 border-b border-gray-300"
                 >
-                  <span>
+                  <span className="flex-1 text-left">
                     {fruit.name} (x{count})
                   </span>
-                  <span>({fruit.nutritions.calories * count} cal)</span>
-                  <button
-                    className="text-red-200 ml-4"
+                  <span className="whitespace-nowrap text-center">
+                    {fruit.nutritions.calories * count} cal
+                  </span>
+                  <Button
+                    variant={"link"}
+                    className="text-red-500 ml-4"
                     onClick={() => handleRemoveFruit(fruit)}
                   >
                     Remove
-                  </button>
+                  </Button>
                 </li>
               ))
             )}

@@ -48,7 +48,9 @@ const FruitList: React.FC<FruitListProps> = ({
                   className="flex justify-between p-2 border-b"
                 >
                   <span>{fruit.name}</span>
-                  <button onClick={() => onAddFruit(fruit)}>Add to Jar</button>
+                  <Button variant={"link"} onClick={() => onAddFruit(fruit)}>
+                    Add to Jar
+                  </Button>
                 </li>
               ))}
             </ul>
