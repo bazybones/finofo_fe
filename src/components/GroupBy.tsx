@@ -14,10 +14,10 @@ interface GroupByProps {
 
 const GroupBy: React.FC<GroupByProps> = ({ groupBy, onChangeGroupBy }) => {
   return (
-    <div className="mb-4">
+    <div className="mb-4 flex justify-center items-center flex-col">
       <label
         htmlFor="group-by"
-        className="block mb-2 text-black dark:text-white"
+        className="text-2xl font-semibold block text-center mb-2 text-black dark:text-white"
       >
         Group by:
       </label>
