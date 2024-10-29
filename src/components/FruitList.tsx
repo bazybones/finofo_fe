@@ -1,4 +1,3 @@
-// src/components/FruitList.tsx
 import React from "react";
 import { Fruit } from "../types/Fruit";
 
@@ -35,7 +34,11 @@ const FruitList: React.FC<FruitListProps> = ({
     <div>
       {Object.entries(groupedFruits).map(([key, group]) => (
         <div key={key} className="mb-4">
-          <h3 className="font-bold text-lg">{key}</h3>
+          {groupBy !== "None" && (
+            <h3 className="font-bold text-lg">
+              {groupBy}: {key}
+            </h3>
+          )}
           <ul>
             {group.map((fruit) => (
               <li key={fruit.id} className="flex justify-between p-2 border-b">
