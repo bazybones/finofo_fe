@@ -96,8 +96,8 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
       </h3>
       <div className="text-right">
         <Button
-          variant={"destructive"}
-          className="border-red-400 bg-red-400 text-white py-2 px-4 rounded mb-4"
+          variant="destructive"
+          className="border-red-600 bg-red-600 text-white py-2 px-4 rounded mb-4"
           onClick={handleRemoveAll}
         >
           Remove All
