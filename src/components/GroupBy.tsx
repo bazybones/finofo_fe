@@ -22,7 +22,7 @@ const GroupBy: React.FC<GroupByProps> = ({ groupBy, onChangeGroupBy }) => {
         Group by:
       </label>
       <Select value={groupBy || "None"} onValueChange={onChangeGroupBy}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger aria-label="Group" className="w-[180px]">
           <SelectValue placeholder="None" />
         </SelectTrigger>
         <SelectContent>

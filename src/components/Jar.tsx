@@ -20,12 +20,30 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
     0
   );
 
-  const getUniqueColors = (numColors: number) => {
-    const colors: Set<string> = new Set();
-    while (colors.size < numColors) {
-      colors.add(`hsl(${Math.random() * 360}, 70%, 50%)`);
+  // Predefined color map to keep colors consistent
+  const colorMap = fruits.reduce((acc, { fruit }, index) => {
+    if (!acc[fruit.name]) {
+      acc[fruit.name] = `hsl(${(index * 360) / fruits.length}, 70%, 50%)`;
     }
-    return Array.from(colors);
+    return acc;
+  }, {} as Record<string, string>);
+
+  const pieChartOptions = {
+    type: "pie",
+    responsive: true,
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function (tooltipItem: any) {
+            const fruitCalories =
+              pieChartData.datasets[0].data[tooltipItem.dataIndex];
+            return `${
+              pieChartData.labels[tooltipItem.dataIndex]
+            }: ${fruitCalories} cal`;
+          },
+        },
+      },
+    },
   };
 
   const pieChartData = {
@@ -36,7 +54,7 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
         data: fruits.map(
           ({ fruit, count }) => fruit.nutritions.calories * count
         ),
-        backgroundColor: getUniqueColors(fruits.length),
+        backgroundColor: fruits.map(({ fruit }) => colorMap[fruit.name]),
       },
     ],
   };
@@ -71,7 +89,7 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
         Jar
       </h2>
       <div className="w-full flex items-center justify-center h-64 mb-4">
-        <Pie data={pieChartData} options={{ responsive: true }} />
+        <Pie data={pieChartData} options={pieChartOptions} />
       </div>
       <h3 className="text-lg dark:text-white text-center mb-4">
         Total Calories: {totalCalories}
@@ -79,7 +97,7 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
       <div className="text-right">
         <Button
           variant={"destructive"}
-          className=" text-white py-2 px-4 rounded mb-4"
+          className="border-red-400 bg-red-400 text-white py-2 px-4 rounded mb-4"
           onClick={handleRemoveAll}
         >
           Remove All

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Fruit } from "./../types/Fruit";
 
 const useFetchFruits = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [fruits, setFruits] = useState<Fruit[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -10,9 +11,7 @@ const useFetchFruits = () => {
   useEffect(() => {
     const fetchFruits = async () => {
       try {
-        const response = await axios.get(
-          "https://66de3f43de4426916ee0b58f.mockapi.io/api/fruits"
-        );
+        const response = await axios.get(apiUrl);
         setFruits(response.data);
       } catch (err) {
         setError("Failed to load fruits data");
