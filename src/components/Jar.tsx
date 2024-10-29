@@ -85,7 +85,7 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold mb-4 dark:text-white text-center">
+      <h2 className="text-xl font-semibold mb-4 dark:text-white text-center">
         Jar
       </h2>
       <div className="w-full flex items-center justify-center h-64 mb-4">

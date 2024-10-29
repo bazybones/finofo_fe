@@ -17,7 +17,7 @@ const GroupBy: React.FC<GroupByProps> = ({ groupBy, onChangeGroupBy }) => {
     <div className="mb-4 flex justify-center items-center flex-col">
       <label
         htmlFor="group-by"
-        className="text-2xl font-semibold block text-center mb-2 text-black dark:text-white"
+        className="text-xl font-semibold inline-block text-center mb-2 text-black dark:text-white"
       >
         Group by:
       </label>
