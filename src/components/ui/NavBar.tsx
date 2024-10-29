@@ -72,7 +72,7 @@ const NavBar: React.FC = () => {
             fill={theme === "dark" ? "white" : "currentColor"}
           ></path>
         </svg>{" "}
-        <span className="text-black font-semibold dark:text-white mt-1.5 text-4xl">
+        <span className="text-black font-semibold dark:text-white mt-1.5 text-base lg:text-4xl">
           FRUITS
         </span>
         <button
