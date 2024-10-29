@@ -1,7 +1,13 @@
-import "./App.css";
+import Home from "./components/Home";
+import NavBar from "./components/NavBar";
 
-function App() {
-  return <h1 className="text-4xl">Hello World</h1>;
-}
+const App = () => {
+  return (
+    <>
+      <NavBar />
+      <Home />
+    </>
+  );
+};
 
 export default App;
