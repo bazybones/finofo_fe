@@ -10,7 +10,9 @@ const useFetchFruits = () => {
   useEffect(() => {
     const fetchFruits = async () => {
       try {
-        const response = await axios.get("/api");
+        const response = await axios.get(
+          "https://66de3f43de4426916ee0b58f.mockapi.io/api/fruits"
+        );
         setFruits(response.data);
       } catch (err) {
         setError("Failed to load fruits data");
