@@ -7,17 +7,18 @@ import { ScrollArea } from "./ui/scroll-area";
 Chart.register(ArcElement);
 
 interface JarProps {
-  fruits: Fruit[];
-  setJar: React.Dispatch<React.SetStateAction<Fruit[]>>; // Add setJar prop
+  fruits: { fruit: Fruit; count: number }[];
+  setJar: React.Dispatch<
+    React.SetStateAction<{ fruit: Fruit; count: number }[]>
+  >;
 }
 
 const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
   const totalCalories = fruits.reduce(
-    (total, fruit) => total + fruit.nutritions.calories,
+    (total, { fruit, count }) => total + fruit.nutritions.calories * count,
     0
   );
 
-  // Generate unique colors
   const getUniqueColors = (numColors: number) => {
     const colors: Set<string> = new Set();
     while (colors.size < numColors) {
@@ -27,28 +28,40 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
   };
 
   const pieChartData = {
-    labels: fruits.map((fruit) => fruit.name),
+    labels: fruits.map(({ fruit }) => fruit.name),
     datasets: [
       {
         label: "Calories",
-        data: fruits.map((fruit) => fruit.nutritions.calories),
+        data: fruits.map(
+          ({ fruit, count }) => fruit.nutritions.calories * count
+        ),
         backgroundColor: getUniqueColors(fruits.length),
       },
     ],
   };
 
-  const handleRemoveFruit = (id: number) => {
+  const handleRemoveFruit = (fruitToRemove: Fruit) => {
     setJar((prevFruits) => {
-      const index = prevFruits.findIndex((fruit) => fruit.id === +id);
-      if (index !== -1) {
-        return [...prevFruits.slice(0, index), ...prevFruits.slice(index + 1)];
+      const existingFruit = prevFruits.find(
+        (item) => item.fruit.id === fruitToRemove.id
+      );
+      if (existingFruit) {
+        if (existingFruit.count > 1) {
+          return prevFruits.map((item) =>
+            item.fruit.id === fruitToRemove.id
+              ? { ...item, count: item.count - 1 }
+              : item
+          );
+        }
+
+        return prevFruits.filter((item) => item.fruit.id !== fruitToRemove.id);
       }
       return prevFruits;
     });
   };
 
   const handleRemoveAll = () => {
-    setJar([]); // Clear all fruits from the jar
+    setJar([]);
   };
 
   return (
@@ -64,7 +77,7 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
       </h3>
       <div className="text-right">
         <button
-          className="bg-red-500 text-white  py-2 px-4 rounded mb-4"
+          className="bg-red-400 text-white py-2 px-4 rounded mb-4"
           onClick={handleRemoveAll}
         >
           Remove All
@@ -78,16 +91,18 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
                 No fruits added to the jar.
               </li>
             ) : (
-              fruits.map((fruit) => (
+              fruits.map(({ fruit, count }) => (
                 <li
-                  key={fruit.id}
+                  key={`${fruit.id}-${count}`}
                   className="flex justify-between mb-2 dark:text-white p-2 border-b border-gray-300"
                 >
-                  <span>{fruit.name}</span>
-                  <span>({fruit.nutritions.calories} cal)</span>
+                  <span>
+                    {fruit.name} (x{count})
+                  </span>
+                  <span>({fruit.nutritions.calories * count} cal)</span>
                   <button
-                    className="text-red-500 ml-4"
-                    onClick={() => handleRemoveFruit(fruit.id)} // Remove fruit button
+                    className="text-red-200 ml-4"
+                    onClick={() => handleRemoveFruit(fruit)}
                   >
                     Remove
                   </button>

@@ -13,11 +13,21 @@ import Jar from "./Jar";
 const Home: React.FC = () => {
   const { fruits, loading, error } = useFetchFruits();
   const [groupBy, setGroupBy] = useState<string | null>("None");
-  const [jar, setJar] = useState<Fruit[]>([]);
+  const [jar, setJar] = useState<{ fruit: Fruit; count: number }[]>([]);
 
   const handleAddFruitToJar = (fruit: Fruit) => {
-    setJar((prevJar) => [...prevJar, fruit]);
+    setJar((prevJar) => {
+      const existingFruit = prevJar.find((item) => item.fruit.id === fruit.id);
+      if (existingFruit) {
+        return prevJar.map((item) =>
+          item.fruit.id === fruit.id ? { ...item, count: item.count + 1 } : item
+        );
+      }
+
+      return [...prevJar, { fruit, count: 1 }];
+    });
   };
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-[#1d1d20]">
       <Layout
