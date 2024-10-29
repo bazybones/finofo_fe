@@ -71,7 +71,10 @@ const NavBar: React.FC = () => {
             d="M43.5061 3.61412C44.5041 3.61412 45.3132 2.80507 45.3132 1.80706C45.3132 0.809048 44.5041 0 43.5061 0C42.5081 0 41.699 0.809048 41.699 1.80706C41.699 2.80507 42.5081 3.61412 43.5061 3.61412Z"
             fill={theme === "dark" ? "white" : "currentColor"}
           ></path>
-        </svg>
+        </svg>{" "}
+        <span className="text-black font-semibold dark:text-white text-4xl">
+          fruits
+        </span>
         <button
           className="fixed top-4 right-4 bg-black dark:bg-white p-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
           onClick={handleThemeSwitch}

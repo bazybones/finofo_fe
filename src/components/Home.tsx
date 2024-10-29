@@ -1,12 +1,25 @@
+import useFetchFruits from "./../hooks/fetchFruits";
+import React from "react";
+import Layout from "./Layout"; // Import the Layout component
+
 const Home: React.FC = () => {
+  const { fruits } = useFetchFruits(); // Fetch fruits data
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-      <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
-        Welcome to My App
-      </h2>
-      <p className="mt-4 text-gray-600 dark:text-gray-300">
-        This is a sample application built with Vite, React, and TypeScript!
-      </p>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-black">
+      <Layout
+        leftContent={
+          <div className="text-black dark:text-white">
+            {JSON.stringify(fruits)}
+          </div>
+        }
+        rightContent={
+          <div className="text-black dark:text-white">
+            {/* You can add your jar or any other content here */}
+            Jar content goes here.
+          </div>
+        }
+      />
     </div>
   );
 };
