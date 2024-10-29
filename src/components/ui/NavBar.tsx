@@ -20,7 +20,7 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-between bg-white dark:bg-black p-4 shadow-md">
+    <div className="flex items-center justify-between bg-white dark:bg-[#1d1d20] p-4 shadow-md">
       <div className="flex items-center space-x-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -72,11 +72,11 @@ const NavBar: React.FC = () => {
             fill={theme === "dark" ? "white" : "currentColor"}
           ></path>
         </svg>{" "}
-        <span className="text-black font-semibold dark:text-white text-4xl">
-          fruits
+        <span className="text-black font-semibold dark:text-white mt-1.5 text-4xl">
+          FRUITS
         </span>
         <button
-          className="fixed top-4 right-4 bg-black dark:bg-white p-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
+          className="fixed top-4 right-4 bg-[#1d1d20] dark:bg-white p-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
           onClick={handleThemeSwitch}
           aria-label="Toggle theme"
         >

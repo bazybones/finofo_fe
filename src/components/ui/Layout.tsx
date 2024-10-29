@@ -11,7 +11,6 @@ const Layout: React.FC<LayoutProps> = ({ leftContent, rightContent }) => {
     <div className="flex gap-4 p-4">
       {/* Left Section */}
       <div className="w-1/2">{leftContent}</div>
-
       {/* Right Section */}
       <div className="w-1/2">{rightContent}</div>
     </div>

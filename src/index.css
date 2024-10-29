@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply bg-[#1d1d20];
+
+  }
+
   :root {
 
     --background: 0 0% 100%;
@@ -58,7 +63,7 @@
 
   .dark {
 
-    --background: black;
+    --background: 0 0% 3.9%;
 
     --foreground: 0 0% 98%;
 
