@@ -34,9 +34,14 @@ const Home: React.FC = () => {
         leftContent={
           <div className="text-black dark:text-white">
             {loading ? (
-              Array.from({ length: 12 }).map((_, index) => (
+              Array.from({ length: 2 }).map((_, index) => (
                 <div key={index} className="gap-4">
-                  <Skeleton className="h-16 w-auto mb-2" key={index} />
+                  <Skeleton
+                    className={`${
+                      index === 0 ? `h-16 w-auto mb-2` : "h-[40rem] w-auto"
+                    }`}
+                    key={index}
+                  />
                 </div>
               ))
             ) : error ? (

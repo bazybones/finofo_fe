@@ -1,11 +1,12 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
 import { Fruit } from "../types/Fruit";
-import { Chart, ArcElement } from "chart.js";
+import { Chart, ArcElement, Tooltip } from "chart.js";
 import { ScrollArea } from "./ui/scroll-area";
 import { Button } from "./ui/button";
 
 Chart.register(ArcElement);
+Chart.register(Tooltip);
 
 interface JarProps {
   fruits: { fruit: Fruit; count: number }[];
@@ -29,7 +30,6 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
   }, {} as Record<string, string>);
 
   const pieChartOptions = {
-    type: "pie",
     responsive: true,
     plugins: {
       tooltip: {
@@ -88,7 +88,7 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
       <h2 className="text-xl font-semibold mb-4 dark:text-white text-center">
         Jar
       </h2>
-      <div className="w-full flex items-center justify-center h-64 mb-4">
+      <div className="w-100 flex items-center justify-center h-64 mb-4">
         <Pie data={pieChartData} options={pieChartOptions} />
       </div>
       <h3 className="text-lg dark:text-white text-center mb-4">
@@ -96,8 +96,9 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
       </h3>
       <div className="text-right">
         <Button
+          disabled={fruits.length === 0}
           variant="destructive"
-          className="border-red-600 bg-red-600 text-white py-2 px-4 rounded mb-4"
+          className="border-red-600 bg-red-600 text-white py-2 px-4 rounded mb-4 disabled:cursor-not-allowed"
           onClick={handleRemoveAll}
         >
           Remove All
@@ -114,10 +115,13 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
               fruits.map(({ fruit, count }) => (
                 <li
                   key={`${fruit.id}-${count}`}
-                  className="flex justify-between mb-2 dark:text-white p-2 border-b border-gray-300"
+                  className="flex justify-between mb-2 dark:text-white p-2 border-b border-gray-50/10"
                 >
-                  <span className="flex-1 text-left">
-                    {fruit.name} (x{count})
+                  <span
+                    style={{ color: colorMap[fruit.name] }}
+                    className="flex-1 text-left"
+                  >
+                    {fruit.name} (x{count}){" "}
                   </span>
                   <span className="whitespace-nowrap text-center">
                     {fruit.nutritions.calories * count} cal

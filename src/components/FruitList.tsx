@@ -66,7 +66,7 @@ const FruitList: React.FC<FruitListProps> = ({
               {group.map((fruit) => (
                 <li
                   key={fruit.id}
-                  className="flex justify-between p-2 border-b"
+                  className="flex justify-between p-2 border-b border-gray-50/10"
                 >
                   <span>
                     {fruit.name} ({fruit.nutritions.calories}cal)
@@ -100,15 +100,15 @@ const FruitList: React.FC<FruitListProps> = ({
           </TableHeader>
           <TableBody>
             {fruits.map((fruit) => (
-              <TableRow key={fruit.id}>
-                <TableCell className="border p-2">{fruit.name}</TableCell>
-                <TableCell className="border p-2">{fruit.family}</TableCell>
-                <TableCell className="border p-2">{fruit.order}</TableCell>
-                <TableCell className="border p-2">{fruit.genus}</TableCell>
-                <TableCell className="border p-2">
+              <TableRow className="border border-gray-50/10" key={fruit.id}>
+                <TableCell className=" p-2">{fruit.name}</TableCell>
+                <TableCell className=" p-2">{fruit.family}</TableCell>
+                <TableCell className=" p-2">{fruit.order}</TableCell>
+                <TableCell className=" p-2">{fruit.genus}</TableCell>
+                <TableCell className=" p-2">
                   {fruit.nutritions.calories}
                 </TableCell>
-                <TableCell className="border p-2">
+                <TableCell className="= p-2">
                   <Button
                     variant={"link"}
                     onClick={() => onAddFruit(fruit)}
