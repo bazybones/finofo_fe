@@ -40,7 +40,7 @@ const FruitList: React.FC<FruitListProps> = ({
   };
 
   const groupedFruits = groupFruits();
-  const renderListView = () => {
+  const ListView = () => {
     return (
       <div>
         {Object.entries(groupedFruits).map(([key, group]) => (
@@ -83,7 +83,7 @@ const FruitList: React.FC<FruitListProps> = ({
     );
   };
 
-  const renderTableView = () => {
+  const TableView = () => {
     return (
       <div className="overflow-x-auto">
         <Table>
@@ -149,7 +149,7 @@ const FruitList: React.FC<FruitListProps> = ({
           </Button>
         )}
       </div>
-      {viewType === "list" ? renderListView() : renderTableView()}
+      {viewType === "list" ? <ListView /> : <TableView />}
     </div>
   );
 };
