@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import { Fruit } from "../types/Fruit";
 import { Button } from "./ui/button";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table";
 
 interface FruitListProps {
   fruits: Fruit[];
@@ -77,26 +86,29 @@ const FruitList: React.FC<FruitListProps> = ({
   const renderTableView = () => {
     return (
       <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse rounded-lg">
-          <thead>
-            <tr>
-              <th className="border p-2">Name</th>
-              <th className="border p-2">Family</th>
-              <th className="border p-2">Order</th>
-              <th className="border p-2">Genus</th>
-              <th className="border p-2">Calories</th>
-              <th className="border p-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
+        <Table>
+          <TableCaption>A list of fruits with their details.</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[150px]">Name</TableHead>
+              <TableHead>Family</TableHead>
+              <TableHead>Order</TableHead>
+              <TableHead>Genus</TableHead>
+              <TableHead>Calories</TableHead>
+              <TableHead>Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {fruits.map((fruit) => (
-              <tr key={fruit.id}>
-                <td className="border p-2">{fruit.name}</td>
-                <td className="border p-2">{fruit.family}</td>
-                <td className="border p-2">{fruit.order}</td>
-                <td className="border p-2">{fruit.genus}</td>
-                <td className="border p-2">{fruit.nutritions.calories}</td>
-                <td className="border p-2">
+              <TableRow key={fruit.id}>
+                <TableCell className="border p-2">{fruit.name}</TableCell>
+                <TableCell className="border p-2">{fruit.family}</TableCell>
+                <TableCell className="border p-2">{fruit.order}</TableCell>
+                <TableCell className="border p-2">{fruit.genus}</TableCell>
+                <TableCell className="border p-2">
+                  {fruit.nutritions.calories}
+                </TableCell>
+                <TableCell className="border p-2">
                   <Button
                     variant={"link"}
                     onClick={() => onAddFruit(fruit)}
@@ -104,11 +116,11 @@ const FruitList: React.FC<FruitListProps> = ({
                   >
                     Add
                   </Button>
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     );
   };
