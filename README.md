@@ -39,7 +39,7 @@ Create a basic application using React and TypeScript to display a list of fruit
   - Group Actions and Layout: In "List" view, fruits are grouped under collapsible headers based on the selected groupBy attribute, with an "Add All" button at the group level, allowing quick addition of all fruits in a group to the jar.
   - Add to Jar Buttons: Each fruit has an "Add" button, enabling individual additions, and a top-level "Add All" button in both views, allowing bulk addition of all listed fruits to the jar, enhancing usability.
 
-6. **Jar Functionality**
+5. **Jar Functionality**
   - Total Calorie Calculation and Removal Actions: The Jar component calculates the total calories based on the quantity of each fruit in the jar. Users can remove individual fruits or clear the entire jar with a "Remove All" button, improving calorie tracking and item management.
   - Pie Chart Visualization: Using react-chartjs-2, a pie chart displays the calorie distribution of each fruit type in the jar, with colors assigned dynamically to each fruit based on its name. This visual aid helps users understand the calorie composition at a glance.
   - Scrollable Fruit List: Inside a scrollable area, the jar displays added fruits with their quantities, calorie counts, and an option to remove each fruit individually. This organized layout makes it easy for users to review or adjust items in the jar.
