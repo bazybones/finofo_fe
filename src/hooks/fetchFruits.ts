@@ -3,7 +3,7 @@ import axios from "axios";
 import { Fruit } from "./../types/Fruit";
 
 const useFetchFruits = () => {
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [fruits, setFruits] = useState<Fruit[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
