@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import useFetchFruits from "./../hooks/fetchFruits";
 import Layout from "./ui/Layout";
 import { Skeleton } from "./ui/Skeleton";

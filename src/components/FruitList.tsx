@@ -10,6 +10,12 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./ui/accordion";
 
 interface FruitListProps {
   fruits: Fruit[];
@@ -42,50 +48,79 @@ const FruitList: React.FC<FruitListProps> = ({
   };
 
   const groupedFruits = groupFruits();
-  const ListView = () => {
+  const listView = () => {
     return (
       <div>
         {Object.entries(groupedFruits).map(([key, group]) => (
           <div key={key} className="mb-6">
-            {groupBy !== "None" && (
-              <div className="flex items-center justify-between bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-md mb-2">
-                <h3 className="font-semibold text-lg text-gray-800 dark:text-white">
-                  {groupBy}:{" "}
-                  <span className="text-gray-600 dark:text-gray-300">
-                    {key}
-                  </span>
-                </h3>
-                <Button
-                  onClick={() => group.forEach(onAddFruit)}
-                  variant="outline"
-                  className="text-sm px-4 py-2 border border-gray-300 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 dark:text-gray-300 rounded-md transition ease-in-out duration-150"
-                >
-                  Add All in {key}
-                </Button>
+            {groupBy !== "None" ? (
+              <Accordion type="multiple">
+                <AccordionItem value={key}>
+                  <AccordionTrigger>
+                    <h3 className="text-xl">
+                      {groupBy}: {key} (Total: {group.length})
+                    </h3>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="flex justify-end border-b border-gray-50/10 ">
+                      <Button
+                        onClick={() => group.forEach(onAddFruit)}
+                        variant="outline"
+                        className="mt-2 text-sm px-4 py-2 border border-gray-300 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 dark:text-gray-300 rounded-md transition ease-in-out duration-150 mb-2"
+                      >
+                        Add All in {key}
+                      </Button>
+                    </div>
+                    <ul>
+                      {group.map((fruit) => (
+                        <li
+                          key={fruit.id}
+                          className="flex justify-between items-center p-2 border-b border-gray-50/10"
+                        >
+                          <span>
+                            {fruit.name} ({fruit.nutritions.calories} cal)
+                          </span>
+                          <Button
+                            variant={"link"}
+                            onClick={() => onAddFruit(fruit)}
+                          >
+                            Add to Jar
+                          </Button>
+                        </li>
+                      ))}
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            ) : (
+              <div className="bg-gray-100 dark:bg-transparent p-4 rounded-lg shadow-md mb-2">
+                <ul>
+                  {group.map((fruit) => (
+                    <li
+                      key={fruit.id}
+                      className="flex justify-between p-2 border-b border-gray-50/10"
+                    >
+                      <span>
+                        {fruit.name} ({fruit.nutritions.calories} cal)
+                      </span>
+                      <Button
+                        variant={"link"}
+                        onClick={() => onAddFruit(fruit)}
+                      >
+                        Add to Jar
+                      </Button>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
-            <ul>
-              {group.map((fruit) => (
-                <li
-                  key={fruit.id}
-                  className="flex justify-between p-2 border-b border-gray-50/10"
-                >
-                  <span>
-                    {fruit.name} ({fruit.nutritions.calories}cal)
-                  </span>
-                  <Button variant={"link"} onClick={() => onAddFruit(fruit)}>
-                    Add to Jar
-                  </Button>
-                </li>
-              ))}
-            </ul>
           </div>
         ))}
       </div>
     );
   };
 
-  const TableView = () => {
+  const tableView = () => {
     return (
       <div className="overflow-x-auto">
         <Table>
@@ -137,7 +172,7 @@ const FruitList: React.FC<FruitListProps> = ({
         <Button
           variant={"outline"}
           onClick={toggleView}
-          className="py-2 px-4 text-black dark:text-white rounded"
+          className="mt-2 text-sm px-4 py-2 border border-gray-300 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 dark:text-gray-300 rounded-md transition ease-in-out duration-150 mb-2"
         >
           Switch to {viewType === "list" ? "Table" : "List"} View
         </Button>
@@ -151,7 +186,7 @@ const FruitList: React.FC<FruitListProps> = ({
           </Button>
         )}
       </div>
-      {viewType === "list" ? <ListView /> : <TableView />}
+      {viewType === "list" ? listView() : tableView()}
     </div>
   );
 };
