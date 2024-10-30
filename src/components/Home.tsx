@@ -14,6 +14,7 @@ const Home: React.FC = () => {
   const { fruits, loading, error } = useFetchFruits();
   const [groupBy, setGroupBy] = useState<string | null>("None");
   const [jar, setJar] = useState<{ fruit: Fruit; count: number }[]>([]);
+  const [viewType, setViewType] = useState<"list" | "table">("list");
 
   const handleAddFruitToJar = (fruit: Fruit) => {
     setJar((prevJar) => {
@@ -55,6 +56,8 @@ const Home: React.FC = () => {
               fruits={fruits}
               onAddFruit={handleAddFruitToJar}
               groupBy={groupBy}
+              viewType={viewType}
+              setViewType={setViewType}
             />
           </ScrollArea>
         </>

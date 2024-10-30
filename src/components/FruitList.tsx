@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Fruit } from "../types/Fruit";
 import { Button } from "./ui/button";
 import {
@@ -15,15 +15,17 @@ interface FruitListProps {
   fruits: Fruit[];
   onAddFruit: (fruit: Fruit) => void;
   groupBy: string | null;
+  viewType: "list" | "table";
+  setViewType: React.Dispatch<React.SetStateAction<"list" | "table">>;
 }
 
 const FruitList: React.FC<FruitListProps> = ({
   fruits,
   onAddFruit,
   groupBy,
+  viewType,
+  setViewType,
 }) => {
-  const [viewType, setViewType] = useState<"list" | "table">("list");
-
   const groupFruits = () => {
     if (!groupBy || groupBy === "None") {
       return { None: fruits };
