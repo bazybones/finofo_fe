@@ -21,7 +21,6 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
     0
   );
 
-  // Predefined color map to keep colors consistent
   const colorMap = fruits.reduce((acc, { fruit }, index) => {
     if (!acc[fruit.name]) {
       acc[fruit.name] = `hsl(${(index * 360) / fruits.length}, 70%, 50%)`;
