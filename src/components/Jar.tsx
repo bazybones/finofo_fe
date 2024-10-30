@@ -103,7 +103,7 @@ const Jar: React.FC<JarProps> = ({ fruits, setJar }) => {
           Remove All
         </Button>
       </div>
-      <ScrollArea className="h-[41.8rem] w-auto rounded-md border p-5">
+      <ScrollArea className="h-[41.8rem] w-auto rounded-md border dark:border-gray-50/10 border-gray-300 p-5">
         <div className="dark:bg-[#1d1d20] p-6 flex flex-col items-center">
           <ul className="mb-4 w-full">
             {fruits.length === 0 ? (

@@ -51,7 +51,7 @@ const Home: React.FC = () => {
       ) : (
         <>
           <GroupBy groupBy={groupBy} onChangeGroupBy={setGroupBy} />
-          <ScrollArea className="h-[62rem] w-auto rounded-md border p-5">
+          <ScrollArea className="h-[62rem] w-auto rounded-md border dark:border-gray-50/10 border-gray-300 p-5">
             <FruitList
               fruits={fruits}
               onAddFruit={handleAddFruitToJar}
