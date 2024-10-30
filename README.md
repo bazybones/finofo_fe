@@ -2,8 +2,8 @@
 
 Create a basic application using React and TypeScript to display a list of fruits. The application should fetch data from an external API and display the fruits grouped by a specified field.
 
-Hosted on: https://finofo-fe.vercel.app
-Repo: https://github.com/bazybones/finofo_fe
+- Hosted on: https://finofo-fe.vercel.app
+- Repo: https://github.com/bazybones/finofo_fe
 
 ## Technologies Used
  - React with TypeScript (Vite)
@@ -22,7 +22,7 @@ Repo: https://github.com/bazybones/finofo_fe
 1. **Data Fetching**
   - Due to CORS issues with the provided API endpoint, I hosted a mock version on mockapi.io with the same data to ensure functionality across both local and deployed environments.
   - Endpoint: https://66de3f43de4426916ee0b58f.mockapi.io/api/fruits
-  - Fetching Library: Using axios and inbuilt state management, I've worked with Redux Toolkit and Tanstack Query for larger apps in past.
+  - Fetching Library: Used axios and inbuilt state management for this project, however, I've worked with Redux Toolkit and Tanstack Query for larger apps for state management and api integration in past.
 
 2. **Layout**
    - The page should was divided into two sections:
