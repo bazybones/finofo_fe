@@ -2,6 +2,8 @@
 
 Create a basic application using React and TypeScript to display a list of fruits. The application should fetch data from an external API and display the fruits grouped by a specified field.
 
+Hosted on: https://finofo-fe.vercel.app
+Repo: https://github.com/bazybones/finofo_fe
 
 ## Technologies Used
  - React with TypeScript (Vite)
