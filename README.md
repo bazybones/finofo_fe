@@ -14,7 +14,7 @@ Repo: https://github.com/bazybones/finofo_fe
 
 
  ## Performance Benchmark
-![alt text](image.png)
+(performance.png)
 
 
 ### Requirements
