@@ -1,5 +1,5 @@
+import React, { useState, useCallback } from "react";
 import useFetchFruits from "./../hooks/fetchFruits";
-import React, { useState } from "react";
 import Layout from "./ui/Layout";
 import { Skeleton } from "./ui/Skeleton";
 import { Alert, AlertDescription, AlertTitle } from "./ui/Alert";
@@ -29,7 +29,7 @@ const Home: React.FC = () => {
     });
   };
 
-  const LeftContent = () => (
+  const leftContent = () => (
     <div className="text-black dark:text-white">
       {loading ? (
         Array.from({ length: 2 }).map((_, index) => (
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
     </div>
   );
 
-  const RightContent = () => (
+  const rightContent = () => (
     <div className="text-black dark:text-white">
       <Jar setJar={setJar} fruits={jar} />
     </div>
@@ -73,7 +73,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-[#1d1d20]">
-      <Layout leftContent={<LeftContent />} rightContent={<RightContent />} />
+      <Layout leftContent={leftContent()} rightContent={rightContent()} />
     </div>
   );
 };
