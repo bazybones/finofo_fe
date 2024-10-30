@@ -12,6 +12,11 @@ Repo: https://github.com/bazybones/finofo_fe
  - Chart.js for pie chart visualization
  - mockapi.io for API mocking due to CORS issues, tried bypassing it with proxy, but it did not work in dev, only on local machine
 
+
+ ## Performance Benchmark
+![alt text](image.png)
+
+
 ### Requirements
 
 1. **Data Fetching**
